@@ -7,9 +7,11 @@ document.addEventListener('keydown', function(event) {
       console.log(window.location.hostname)
       if (chat_gpt_url.includes(window.location.hostname)) {
         chat_gpt_text_input = document.getElementById('prompt-textarea')
-        chat_gpt_text_input.innerText = "Up key pressed GPT"
+        chat_gpt_text_input.select();
+        chat_gpt_text_input.value = "Up key pressed GPT"
       } else if (bard_url.includes(window.location.hostname)) {
         bard_text_input = document.getElementById('mat-input-0');
+        bard_text_input.select();
         bard_text_input.value = "Up key pressed Bard";
       }
       
@@ -22,11 +24,15 @@ document.addEventListener('keydown', function(event) {
     console.log(window.location.hostname)
     if (chat_gpt_url.includes(window.location.hostname)) {
       chat_gpt_text_input = document.getElementById('prompt-textarea')
-      chat_gpt_text_input.innerText = "Down key pressed GPT"
+      chat_gpt_text_input.select();
+      chat_gpt_text_input.value = "Down key pressed GPT"
     } else if (bard_url.includes(window.location.hostname)) {
       bard_text_input = document.getElementById('mat-input-0');
+      bard_text_input.select();
       bard_text_input.value = "Down key pressed Bard";
     }
   }
-});  
+});
+
+
 
