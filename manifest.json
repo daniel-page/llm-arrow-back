@@ -11,11 +11,8 @@
         "128": "icons/icon128.png"
     },  
     "permissions": ["activeTab", "scripting"],
-
-    "content_scripts": [
-    {
-          "matches": ["https://chat.openai.com/","https://bard.google.com/"],
+    "content_scripts": [{
+          "matches": ["https://chat.openai.com/*","https://bard.google.com/*"],
           "js": ["content.js"]
     }]
-
 }
