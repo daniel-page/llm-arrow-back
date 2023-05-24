@@ -1,7 +1,7 @@
 {
     "name": "LLM Arrow Back",
     "version": "1.0",
-    "description": "A Google Chrome extention that enables shortcuts (up/down arrow keys) for recalling previously used prompts in LLM chat interfaces.",
+    "description": "A Google Chrome extension that enables shortcuts (up/down arrow keys) for recalling previously used prompts in ChatGPT and Bard.",
     "manifest_version": 3,
     "author": "Daniel Page",
     "icons": {
