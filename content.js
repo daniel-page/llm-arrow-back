@@ -1,23 +1,36 @@
 const chat_gpt_url = 'https://chat.openai.com/';
 const bard_url = 'https://bard.google.com/';
 
-
 var prev_prompt_index = -1
-var arr = []
+var prev_prompts = []
 
-function update() {
-  arr = [];
+function updateChatGPT() {
+  prev_prompts = [];
 
   text_blocks = document.getElementsByClassName("min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words");
 
   for (let i = 0; i < text_blocks.length; i++) { 
     if (text_blocks[i]["firstElementChild"] == null) {
-      arr.push(text_blocks[i].innerText)
+      prev_prompts.push(text_blocks[i].innerText)
     }
   }
-  arr.reverse();
-  console.log(arr);
+  prev_prompts.reverse();
+  console.log(prev_prompts);
+}
 
+function updateBard() {
+
+  prev_prompts = [];
+
+  text_blocks = document.getElementsByClassName("query-text");
+
+  for (let i = 0; i < text_blocks.length; i++) { 
+    if (text_blocks[i]["firstElementChild"] == null) {
+      prev_prompts.push(text_blocks[i].innerText)
+    }
+  }
+  prev_prompts.reverse();
+  console.log(prev_prompts);
 }
 
 document.addEventListener('keydown', function(event) {
@@ -26,23 +39,27 @@ document.addEventListener('keydown', function(event) {
       console.log(window.location.hostname)
       if (chat_gpt_url.includes(window.location.hostname)) {
         event.preventDefault();
-        update();
+        updateChatGPT();
         chat_gpt_text_input = document.getElementById('prompt-textarea')
         chat_gpt_text_input.select();
-        if (prev_prompt_index + 1 < arr.length) {
+        if (prev_prompt_index + 1 < prev_prompts.length) {
           prev_prompt_index++;
           console.log(prev_prompt_index);
-          chat_gpt_text_input.value = arr[prev_prompt_index];
+          chat_gpt_text_input.value = prev_prompts[prev_prompt_index];
         }
         chat_gpt_text_input.dispatchEvent(
           new Event("input", { bubbles: true, cancelable: true })
         );
       } else if (bard_url.includes(window.location.hostname)) {
         event.preventDefault();
-        update();
+        updateBard();
         bard_text_input = document.getElementById('mat-input-0');
         bard_text_input.select();
-        bard_text_input.value = "Up key pressed Bard";
+        if (prev_prompt_index + 1 < prev_prompts.length) {
+          prev_prompt_index++;
+          console.log(prev_prompt_index);
+          bard_text_input.value = prev_prompts[prev_prompt_index];
+        }
         const end = bard_text_input.value.length;
         bard_text_input.setSelectionRange(end, end);
         bard_text_input.dispatchEvent(
@@ -58,13 +75,13 @@ document.addEventListener('keydown', function(event) {
     console.log(window.location.hostname)
     if (chat_gpt_url.includes(window.location.hostname)) {
       event.preventDefault();
-      update();
+      updateChatGPT();
       chat_gpt_text_input = document.getElementById('prompt-textarea')
       chat_gpt_text_input.select();
       if (prev_prompt_index - 1 >= 0) {
         prev_prompt_index--;
         console.log(prev_prompt_index);
-        chat_gpt_text_input.value = arr[prev_prompt_index];
+        chat_gpt_text_input.value = prev_prompts[prev_prompt_index];
       } else {
         chat_gpt_text_input.value = "";
         prev_prompt_index = -1;
@@ -74,16 +91,20 @@ document.addEventListener('keydown', function(event) {
       );
     } else if (bard_url.includes(window.location.hostname)) {
       event.preventDefault();
-      update();
+      updateBard();
       bard_text_input = document.getElementById('mat-input-0');
       bard_text_input.select();
-      bard_text_input.value = "Down key pressed Bard";
+      if (prev_prompt_index - 1 >= 0) {
+        prev_prompt_index--;
+        console.log(prev_prompt_index);
+        bard_text_input.value = prev_prompts[prev_prompt_index];
+      } else {
+        bard_text_input.value = "";
+        prev_prompt_index = -1;
+      }
       bard_text_input.dispatchEvent(
         new Event("input", { bubbles: true, cancelable: true })
       );
     }
   }
 });
-
-
-
