@@ -4,6 +4,15 @@ A Google Chrome extension that enables shortcuts (up/down arrow keys) for recall
 
 Note this extension could break if OpenAI or Google change their websites.
 
+## Installation
+
+1. Download the [source code from the latest release](https://github.com/daniel-page/llm-chat-back/archive/refs/tags/v1.0.zip) and extract the archive 
+2. Open Chrome
+3. Go to the **Extensions** page (Top Right Menu > More Tools > Extensions)
+4. Click on the **Load Unpacked** button
+5. Locate and load the INNER extracted directory with the source code
+6. The extension will install
+
 ## Links
 
 - https://chat.openai.com/chat
