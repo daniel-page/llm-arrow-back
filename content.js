@@ -15,7 +15,6 @@ function updateChatGPT() {
     }
   }
   prev_prompts.reverse();
-  console.log(prev_prompts);
 }
 
 function updateBard() {
@@ -30,13 +29,10 @@ function updateBard() {
     }
   }
   prev_prompts.reverse();
-  console.log(prev_prompts);
 }
 
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 38) { // 38 is the key code for the up arrow key
-      console.log("Up key pressed");
-      console.log(window.location.hostname)
       if (chat_gpt_url.includes(window.location.hostname)) {
         event.preventDefault();
         updateChatGPT();
@@ -44,7 +40,6 @@ document.addEventListener('keydown', function(event) {
         chat_gpt_text_input.select();
         if (prev_prompt_index + 1 < prev_prompts.length) {
           prev_prompt_index++;
-          console.log(prev_prompt_index);
           chat_gpt_text_input.value = prev_prompts[prev_prompt_index];
         }
         chat_gpt_text_input.dispatchEvent(
@@ -57,7 +52,6 @@ document.addEventListener('keydown', function(event) {
         bard_text_input.select();
         if (prev_prompt_index + 1 < prev_prompts.length) {
           prev_prompt_index++;
-          console.log(prev_prompt_index);
           bard_text_input.value = prev_prompts[prev_prompt_index];
         }
         const end = bard_text_input.value.length;
@@ -70,9 +64,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 document.addEventListener('keydown', function(event) {
-  if (event.keyCode === 40) { // 40 is the key code for the up arrow key
-    console.log("Down key pressed");
-    console.log(window.location.hostname)
+  if (event.keyCode === 40) { // 40 is the key code for the down arrow key
     if (chat_gpt_url.includes(window.location.hostname)) {
       event.preventDefault();
       updateChatGPT();
@@ -80,7 +72,6 @@ document.addEventListener('keydown', function(event) {
       chat_gpt_text_input.select();
       if (prev_prompt_index - 1 >= 0) {
         prev_prompt_index--;
-        console.log(prev_prompt_index);
         chat_gpt_text_input.value = prev_prompts[prev_prompt_index];
       } else {
         chat_gpt_text_input.value = "";
@@ -96,7 +87,6 @@ document.addEventListener('keydown', function(event) {
       bard_text_input.select();
       if (prev_prompt_index - 1 >= 0) {
         prev_prompt_index--;
-        console.log(prev_prompt_index);
         bard_text_input.value = prev_prompts[prev_prompt_index];
       } else {
         bard_text_input.value = "";
