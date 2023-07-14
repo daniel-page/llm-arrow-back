@@ -7,7 +7,7 @@ var prev_prompts = []
 function updateChatGPT() {
   prev_prompts = [];
 
-  text_blocks = document.getElementsByClassName("min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words");
+  text_blocks = document.getElementsByClassName("empty:hidden");
 
   for (let i = 0; i < text_blocks.length; i++) { 
     if (text_blocks[i]["firstElementChild"] == null) {
